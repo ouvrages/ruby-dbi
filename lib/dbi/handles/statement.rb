@@ -209,7 +209,7 @@ module DBI
 
             if block_given? 
                 while (res = @handle.fetch) != nil
-                    @row = @row.dup
+                    @row = Marshal.load(Marshal.dump(@row))
                     @row.set_values(res)
                     yield @row
                 end
@@ -222,7 +222,7 @@ module DBI
                     @handle.cancel
                     @fetchable = false
                 else
-                    @row = @row.dup
+                    @row = Marshal.load(Marshal.dump(@row))
                     @row.set_values(res)
                     res = @row
                 end
@@ -311,7 +311,11 @@ module DBI
                 @fetchable = false
                 return []
             else
-                return rows.collect{|r| tmp = @row.dup; tmp.set_values(r); tmp }
+                return rows.collect{|r|
+                  tmp = Marshal.load(Marshal.dump(@row))
+                  tmp.set_values(r)
+                  tmp
+                }
             end
         end
 
@@ -326,7 +330,7 @@ module DBI
 
             begin
                 while row = fetch do
-                    fetched_rows.push(row)
+                    fetched_rows << Marshal.load(Marshal.dump(row))
                 end
             rescue Exception
             end
