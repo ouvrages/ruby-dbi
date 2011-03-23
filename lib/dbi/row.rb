@@ -5,7 +5,7 @@ module DBI
     # database.
     #
     # It is responsible for containing and representing the result set, converting
-    # it to native Ruby types, and providing methods to sanely move through itself. 
+    # it to native Ruby types, and providing methods to sanely move through itself.
     #
     # The DBI::Row class is a delegate of Array, rather than a subclass, because
     # there are times when it should act like an Array, and others when it should
@@ -33,8 +33,8 @@ module DBI
         def initialize(columns, column_types, size_or_array=nil, convert_types=true)
             @column_types = column_types
             @convert_types = convert_types
-            size_or_array ||= columns.size 
-            
+            size_or_array ||= columns.size
+
             # The '@column_map' is used to map column names to integer values so
             # that users can reference row values by name or number.
 
@@ -80,7 +80,7 @@ module DBI
         def each_with_name
             @arr.each_with_index do |v, i|
                 yield v, @column_names[i]
-            end 
+            end
         end
 
         # returns the underlying array (duplicated)
@@ -150,7 +150,7 @@ module DBI
         # returned.  The behavior for each argument is that of a single argument,
         # i.e. Strings, Symbols, and Regexps act like hash lookups, while
         # Integers and Ranges act like Array index lookups.
-        # 
+        #
         # If no results are found, or an unhandled type is passed, then nil
         # (or a nil element) is returned.
         #
@@ -165,7 +165,7 @@ module DBI
                     when Array
                         args[0].collect { |e| self[e] }
                     when Regexp
-                        self[@column_names.grep(args[0])] 
+                        self[@column_names.grep(args[0])]
                     else
                         @arr[conv_param(args[0])]
                     end
@@ -198,7 +198,7 @@ module DBI
         #
         # row[0]     = "kirk"
         # row[:last] = "haines"
-        # row[0, 2]  = "test" 
+        # row[0, 2]  = "test"
         #
         def []=(key, value_or_length, obj=nil)
             if obj
@@ -217,27 +217,27 @@ module DBI
             def __setobj__(obj)
                 @delegate_dc_obj = @arr = obj
             end
-        else
-            #
-            # See Object#clone.
-            #
-            # #clone and #dup here, however, are both deep copies via Marshal.
-            #
-            def clone
-                Marshal.load(Marshal.dump(self))
-            end
+        end
 
-            def dup
-                row = self.class.allocate
-                row.instance_variable_set :@column_types,  @column_types
-                row.instance_variable_set :@convert_types, @convert_types
-                row.instance_variable_set :@column_map,    @column_map
-                row.instance_variable_set :@column_names,  @column_names
-                # this is the only one we actually dup...
-                row.instance_variable_set :@arr,           arr = @arr.dup
-                row.instance_variable_set :@_dc_obj,       arr
-                row
-            end
+        #
+        # See Object#clone.
+        #
+        # #clone and #dup here, however, are both deep copies via Marshal.
+        #
+        def clone
+            Marshal.load(Marshal.dump(self))
+        end
+
+        def dup
+            row = self.class.allocate
+            row.instance_variable_set :@column_types,  @column_types
+            row.instance_variable_set :@convert_types, @convert_types
+            row.instance_variable_set :@column_map,    @column_map
+            row.instance_variable_set :@column_names,  @column_names
+            # this is the only one we actually dup...
+            row.instance_variable_set :@arr,           arr = @arr.dup
+            row.instance_variable_set :@_dc_obj,       arr
+            row
         end
 
         private
@@ -258,7 +258,7 @@ module DBI
                 end
 
                 if arg.exclude_end?
-                    (first...last) 
+                    (first...last)
                 else
                     (first..last)
                 end
