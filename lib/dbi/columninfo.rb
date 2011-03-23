@@ -39,12 +39,12 @@ module DBI
             @hash ||= Hash.new
 
             # coerce all strings to symbols
-            @hash.each_key do |x|
+            @hash.keys.each do |x|
                 if x.kind_of? String
                     sym = x.to_sym
                     if @hash.has_key? sym
-                        raise ::TypeError, 
-                            "#{self.class.name} may construct from a hash keyed with strings or symbols, but not both" 
+                        raise ::TypeError,
+                            "#{self.class.name} may construct from a hash keyed with strings or symbols, but not both"
                     end
                     @hash[sym] = @hash[x]
                     @hash.delete(x)
@@ -81,7 +81,7 @@ module DBI
         # Aliases - XXX soon to be deprecated
         def self.deprecated_alias(target, source) # :nodoc:
             define_method(target) { |*args| method_missing(source, *args) }
-            deprecate target 
+            deprecate target
         end
 
         deprecated_alias :is_nullable?, :nullable
