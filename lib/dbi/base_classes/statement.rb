@@ -125,7 +125,7 @@ module DBI
             cnt.times do
                 row = fetch
                 break if row.nil?
-                rows << Marshal.load(Marshal.dump(row))
+                rows << row.dup
             end
 
             if rows.empty?
@@ -143,7 +143,7 @@ module DBI
             loop do
                 row = fetch
                 break if row.nil?
-                rows << Marshal.load(Marshal.dump(row))
+                rows << row.dup
             end
 
             if rows.empty?
