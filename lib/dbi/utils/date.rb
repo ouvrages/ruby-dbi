@@ -30,7 +30,7 @@ module DBI
             sprintf("%04d-%02d-%02d", @year, @month, @day)
         end
 
-        private 
+        private
 
         # DBI::Date.new(year = 0, month = 0, day = 0)
         # DBI::Date.new(Date)
@@ -42,10 +42,10 @@ module DBI
         def initialize(year=0, month=0, day=0)
             case year
             when ::Date
-                @year, @month, @day = year.year, year.month, year.day 
+                @year, @month, @day = year.year, year.month, year.day
                 @original_date = year
             when ::Time
-                @year, @month, @day = year.year, year.month, year.day 
+                @year, @month, @day = year.year, year.month, year.day
                 @original_time = year
             else
                 @year, @month, @day = year, month, day
@@ -54,6 +54,6 @@ module DBI
 
         public
 
-        deprecate :initialize, :public
+        deprecated :initialize, :public
     end
 end

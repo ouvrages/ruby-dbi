@@ -21,12 +21,12 @@ module DBI
       def initialize(year=0, month=0, day=0, hour=0, min=0, sec=0, fraction=nil)
          case year
             when ::Time
-               @year, @month, @day = year.year, year.month, year.day 
-               @hour, @minute, @second, @fraction = year.hour, year.min, year.sec, nil 
+               @year, @month, @day = year.year, year.month, year.day
+               @hour, @minute, @second, @fraction = year.hour, year.min, year.sec, nil
                @original_time = year
             when ::Date
-               @year, @month, @day = year.year, year.month, year.day 
-               @hour, @minute, @second, @fraction = 0, 0, 0, nil 
+               @year, @month, @day = year.year, year.month, year.day
+               @hour, @minute, @second, @fraction = 0, 0, 0, nil
                @original_date = year
             else
                @year, @month, @day = year, month, day
@@ -35,8 +35,8 @@ module DBI
       end
 
       public
-      
-      deprecate :initialize, :public
+
+      deprecated :initialize, :public
 
       # Returns true if +timestamp+ has a year, month, day, hour, minute,
       # second and fraction equal to the comparing object.
@@ -70,7 +70,7 @@ module DBI
       # format.  If a fraction is present, then it is appended in ".FF" format.
       def to_s
          string = sprintf("%04d-%02d-%02d %02d:%02d:%02d",
-             @year, @month, @day, @hour, @minute, @second) 
+             @year, @month, @day, @hour, @minute, @second)
 
          if @fraction
             fraction = ("%.9f" % (@fraction.to_i / 1e9)).
