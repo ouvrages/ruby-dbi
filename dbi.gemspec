@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.executables = ['dbi', 'test_broken_dbi']
   spec.summary     = 'A vendor independent interface for accessing databases, similar to Perl\'s DBI'
   spec.description = 'A vendor independent interface for accessing databases, similar to Perl\'s DBI'
-  spec.add_dependency 'deprecated', '= 2.0.1'
+  spec.add_dependency 'deprecated', '~> 3.0.0'
   spec.authors     = ['Erik Hollensbe', 'Christopher Maujean']
   spec.email       = 'ruby-dbi-users@rubyforge.org'
   spec.homepage    = 'http://www.rubyforge.org/projects/ruby-dbi'

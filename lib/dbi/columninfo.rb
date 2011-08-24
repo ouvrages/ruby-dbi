@@ -2,7 +2,7 @@ require 'delegate'
 
 begin
     require 'rubygems'
-    gem 'deprecated', "= 2.0.1"
+    gem 'deprecated'
 rescue LoadError => e
 end
 
@@ -23,6 +23,7 @@ module DBI
     # All of these forms have assignment forms as well.
     #
     class ColumnInfo < DelegateClass(Hash)
+      include Deprecated
 
         # Create a new ColumnInfo object.
         #

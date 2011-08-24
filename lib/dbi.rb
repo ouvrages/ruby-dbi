@@ -37,7 +37,7 @@ module DBI; end
 
 begin
     require "rubygems"
-    gem "deprecated", "= 2.0.1"
+    gem "deprecated"
 rescue LoadError
 end
 
@@ -69,7 +69,7 @@ class Class
     end
 end
 
-Deprecate.set_action(
+Deprecated.set_action(
     proc do |call|
         klass, meth = call.split(/[#.]/)
         klass = klass.split(/::/).inject(Module) { |a,x| a.const_get(x) }
