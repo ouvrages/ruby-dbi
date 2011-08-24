@@ -5,6 +5,7 @@ module DBI
     # DEPRECATED: Please use a regular DateTime object.
     #
    class Timestamp
+     include Deprecated
       attr_accessor :year, :month, :day
       attr_accessor :hour, :minute, :second
       attr_writer   :fraction
