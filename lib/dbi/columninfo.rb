@@ -82,7 +82,7 @@ module DBI
         # Aliases - XXX soon to be deprecated
         def self.deprecated_alias(target, source) # :nodoc:
             define_method(target) { |*args| method_missing(source, *args) }
-            deprecate target
+            deprecated target
         end
 
         deprecated_alias :is_nullable?, :nullable
