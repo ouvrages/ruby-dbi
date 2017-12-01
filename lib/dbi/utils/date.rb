@@ -52,9 +52,5 @@ module DBI
                 @year, @month, @day = year, month, day
             end
         end
-
-        public
-
-        deprecated :initialize, :public
     end
 end

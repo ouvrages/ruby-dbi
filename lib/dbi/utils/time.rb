@@ -26,8 +26,6 @@ module DBI
 
       public
 
-      deprecated :initialize, :public
-
       alias :min :minute
       alias :min= :minute=
       alias :sec :second
