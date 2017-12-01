@@ -1,16 +1,18 @@
-Gem::Specification.new do |spec|
-  spec.name        = 'dbi'
-  spec.version     = '0.4.5'
-  spec.test_file   = 'test/ts_dbi.rb'
-  spec.executables = ['dbi', 'test_broken_dbi']
-  spec.summary     = 'A vendor independent interface for accessing databases, similar to Perl\'s DBI'
-  spec.description = 'A vendor independent interface for accessing databases, similar to Perl\'s DBI'
-  spec.add_dependency 'deprecated', '~> 3.0.0'
-  spec.authors     = ['Erik Hollensbe', 'Christopher Maujean']
-  spec.email       = 'ruby-dbi-users@rubyforge.org'
-  spec.homepage    = 'http://www.rubyforge.org/projects/ruby-dbi'
-  spec.platform    = Gem::Platform::RUBY
-  spec.has_rdoc    = true
-  spec.required_ruby_version = '>= 1.8.0'
-  spec.rubyforge_project = 'ruby-dbi'
+# -*- encoding: utf-8 -*-
+Gem::Specification.new do |gem|
+  gem.name          = 'dbi'
+  gem.version       = '0.4.6'
+  gem.authors       = ['Erik Hollensbe', 'Christopher Maujean']
+  gem.email         = 'ruby-dbi-users@rubyforge.org'
+  gem.homepage      = 'http://www.rubyforge.org/projects/ruby-dbi'
+  gem.summary       = 'A vendor independent interface for accessing databases, similar to Perl\'s DBI'
+  gem.description   = 'A vendor independent interface for accessing databases, similar to Perl\'s DBI'
+  gem.has_rdoc      = true
+
+  gem.files         = `git ls-files`.split($/)
+  gem.test_file     = 'test/ts_dbi.rb'
+  gem.executables   = ['dbi', 'test_broken_dbi']
+  gem.require_paths = ['lib']
+
+  gem.add_runtime_dependency 'deprecated', '= 2.0.1'
 end
